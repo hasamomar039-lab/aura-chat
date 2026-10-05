@@ -9,10 +9,12 @@ jobs:
         with:
           flutter-version: '3.22.2'
           channel: stable
-      - run: flutter create . --platforms=android
+          cache: true
+      - run: flutter create. --platforms=android --project-name aura_chat
       - run: flutter pub get
-      - run: flutter build apk --release
+      - run: flutter doctor -v
+      - run: flutter build apk --debug --verbose
       - uses: actions/upload-artifact@v4
         with:
           name: aura-apk
-          path: build/app/outputs
+          path: build/app/outputs/flutter-apk/app-debug.apk
