@@ -9,14 +9,10 @@ jobs:
         with:
           flutter-version: '3.22.2'
           channel: stable
-      - name: Create android folder
-        run: flutter create. --platforms=android --project-name aura_chat
-      - name: Get packages
-        run: flutter pub get
-      - name: Build APK
-        run: flutter build apk --release
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
+      - run: flutter create. --platforms=android
+      - run: flutter pub get
+      - run: flutter build apk --release
+      - uses: actions/upload-artifact@v4
         with:
           name: aura-apk
           path: build/app/outputs/flutter-apk/app-release.apk
